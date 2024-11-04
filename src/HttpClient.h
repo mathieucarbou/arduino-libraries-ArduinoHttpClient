@@ -313,6 +313,10 @@ public:
     // Inherited from Client
     virtual int connect(IPAddress ip, uint16_t port) { return iClient->connect(ip, port); };
     virtual int connect(const char *host, uint16_t port) { return iClient->connect(host, port); };
+    #ifdef HAS_ESP_IDF_5
+    virtual int connect(const char *host, uint16_t port, int32_t timeout){ return iClient->connect(host, port, timeout); };
+    virtual int connect(IPAddress ip, uint16_t port, int32_t timeout){ return iClient->connect(ip, port, timeout); };
+    #endif
     virtual void stop();
     virtual uint8_t connected() { return iClient->connected(); };
     virtual operator bool() { return bool(iClient); };
